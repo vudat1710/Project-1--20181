@@ -8,7 +8,7 @@ class PlotHistogram():
     #sys.setdefaultencoding('utf8')
     histogram = {}
     f = open('../MaximumMatching/histogram.txt')
-    for x in xrange(100):
+    for x in range(100):
         (word, count) = next(f).split('   ')
         histogram[word] = int(count)
     f.close()
