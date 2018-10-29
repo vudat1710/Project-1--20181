@@ -18,4 +18,4 @@ Having Scrapy, pandas, numpy, and matplotlib packages installed
 - In this folder, run the code in f1_score.py to generate 'outputtestset.txt' (output generated from the test-BI file provided) and 'test.txt' (for the evaluation step mentioned above).
 - In this directory, I have the script provided by my supervisor 'conlleval.pl' (written by Thai Hoang Pham - https://github.com/pth1993/NNVLP/blob/master/conlleval.pl). Run the script by typing `./conlleval.pl -l -d '\t' < test.txt`. The result will appear on your terminal.
 3) Plotting
-- Run plot_his in PlotHistogram folder to have visual aspect of the words frequency.  
+- Run plot_his.py in PlotHistogram folder to have visual aspect of the words frequency.  
