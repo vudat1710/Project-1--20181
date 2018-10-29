@@ -10,7 +10,7 @@ class Syllables():
         pass
 
     def handle(self, paragraph):
-        paragraph = unicode(paragraph, 'utf-8')
+        # paragraph = unicode(paragraph, 'utf-8')
         paragraph = unicodedata.normalize('NFC', paragraph)
 
         regexes = []
@@ -41,13 +41,9 @@ class Syllables():
         return sentences
 
     def main(self):
-        # f = open('test2.txt', 'r')
-        # string = ''.join(f.readlines())
         string = 'Khi thi đại học là một mình mình đi thi, làm bài nhưng 4 năm đại học để được danh hiệu như hiện tại còn có sự giúp đỡ của bạn bè, thầy cô. Cấp 3 là một bài thi để vào trường, còn ĐH lại là kết quả rèn luyện của cả 4 năm nên Phương Anh nghĩ điểm số cũng có sự đóng góp của nhiều tố khác nữa nên mỗi danh hiệu đều có một cảm xúc riêng. T. 9/10/1000'
         result = self.handle(string)
-        # s = self.joinSentences(result)
         print (result)
-        # print (sentences)
         
 
 if __name__ =='__main__':

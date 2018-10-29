@@ -3,11 +3,11 @@ from word_tag import Word_tag
 import syllables
 import re
 import constants
-import sys
+# import sys
 
 class MaxMatchWordSegmenter:
-    reload(sys)
-    sys.setdefaultencoding('utf8')
+    # reload(sys)
+    # sys.setdefaultencoding('utf8')
     histogram = {}
     middle_n = []
     fam_n = []
@@ -80,9 +80,9 @@ class MaxMatchWordSegmenter:
                         continue   
                 isSingleSyl = True
                 for j in range (min(i + 6, senLength), i+1, -1):
-                    Word = ' '.join(tokens[i:j]).encode('utf-8')
-                    word = ' '.join(lowTokens[i:j]).encode('utf-8')
-                    not_normal = ''.join(tokens[i:j]).encode('utf-8')
+                    Word = ' '.join(tokens[i:j])
+                    word = ' '.join(lowTokens[i:j])
+                    not_normal = ''.join(tokens[i:j])
                     if (word in self.dic):
                         self.histogram[Word] = self.histogram.get(Word, 0) + 1
                         wordtags.append(Word_tag(token,'B'))
@@ -91,7 +91,7 @@ class MaxMatchWordSegmenter:
                         i = j -1
                         isSingleSyl =False
                         break
-                    if (pattern_cap.match(token) and pattern_sn.match(''.join(tokens[(i+1):j]).encode('utf-8'))):
+                    if (pattern_cap.match(token) and pattern_sn.match(''.join(tokens[(i+1):j]))):
                         self.histogram[token] = self.histogram.get(token, 0) + 1
                         wordtags.append(Word_tag(token,'B'))
                         isSingleSyl = False
@@ -133,7 +133,7 @@ class MaxMatchWordSegmenter:
                                     wordtags.append(Word_tag(token, 'I'))
                                     notMiddleName = False
                         if (notMiddleName):
-                            temp = ' '.join(tokens[i:ilower]).encode('utf-8')
+                            temp = ' '.join(tokens[i:ilower])
                             self.histogram[temp] = self.histogram.get(temp, 0) + 1
                             wordtags.append(Word_tag(token, 'B'))
                         for k in range(i+1, ilower):
@@ -163,20 +163,20 @@ class MaxMatchWordSegmenter:
     def main(self):
         syl = syllables.Syllables()
         f = open ('output.txt', 'a')
-        sentences = syl.split_sentences('../CrawlData/dantri/data.txt')
+        sentences = syl.split_sentences('data.txt')
         for sentence in sentences:
             result = syl.handle(''.join(sentence))
             words = self.max_match(result)  
             for i in words:
-                f.write(i.word.strip().encode('utf-8'))
+                f.write(i.word.strip())
                 f.write('\t')
                 f.write(i.tag.strip())
                 f.write('\n')
             f.write('\n')  
         f.close()
         f = open('histogram.txt','a')
-        for word, count in sorted(self.histogram.iteritems(), key=lambda x:x[::-1], reverse=True):
-            f.write(word.encode('utf-8'))
+        for word, count in sorted(self.histogram.items(), key=lambda x:x[::-1], reverse=True):
+            f.write(word)
             f.write("   ")
             f.write(str(count))
             f.write("\n")
