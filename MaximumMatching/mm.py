@@ -14,38 +14,46 @@ class MaxMatchWordSegmenter:
     one_syl =[]
     dic = []
 
-    f1 = open('./Dictionary/VNDic_UTF-8.txt', 'r')
+    # f1 = open('/home/vudat1710/Downloads/Project-1--20181-Word-Segmentation/MaximumMatching/Dictionary/VNDic_UTF-8.txt', 'r')
+    # for line in f1.readlines():
+    #     if line.startswith('##'):
+    #         l = line.replace('\n','')
+    #         dic.append(l[2:].lower())
+    # f1.close()
+
+    f1 = open('/home/vudat1710/Downloads/Project-1--20181-Word-Segmentation/MaximumMatching/Dictionary/Dict-UTF8.txt', 'r')
     for line in f1.readlines():
-        if line.startswith('##'):
-            l = line.replace('\n','')
-            dic.append(l[2:].lower())
+        if not line.startswith('##') and ' ' in line:
+            broken = line.strip().split(' ')
+            word = broken[0].replace('_', ' ')
+            dic.append(word.lower())
     f1.close()
 
-    f2 = open('./Dictionary/locations.txt', 'r')
+    f2 = open('/home/vudat1710/Downloads/Project-1--20181-Word-Segmentation/MaximumMatching/Dictionary/locations.txt', 'r')
     for line in f2.readlines():
         l = line.replace('\n','')
         dic.append(l.strip())
     f2.close()
 
-    f3 = open('./Dictionary/country_names.txt', 'r')
+    f3 = open('/home/vudat1710/Downloads/Project-1--20181-Word-Segmentation/MaximumMatching/Dictionary/country_names.txt', 'r')
     for line in f3.readlines():
         l = line.replace('\n','')
         dic.append(l.strip())
     f3.close()
 
-    f4 = open('./Dictionary/middle_names.txt', 'r')
+    f4 = open('/home/vudat1710/Downloads/Project-1--20181-Word-Segmentation/MaximumMatching/Dictionary/middle_names.txt', 'r')
     for line in f4.readlines():
         l = line.replace('\n','')
         middle_n.append(l.strip())
     f4.close()
 
-    f5 = open('./Dictionary/family_names.txt', 'r')
+    f5 = open('/home/vudat1710/Downloads/Project-1--20181-Word-Segmentation/MaximumMatching/Dictionary/family_names.txt', 'r')
     for line in f5.readlines():
         l = line.replace('\n','')
         fam_n.append(l.strip())
     f5.close()
 
-    f6 = open('./Dictionary/one_syl.txt', 'r')
+    f6 = open('/home/vudat1710/Downloads/Project-1--20181-Word-Segmentation/MaximumMatching/Dictionary/one_syl.txt', 'r')
     for line in f6.readlines():
         l = line.replace('\n','')
         one_syl.append(l.strip())
@@ -162,8 +170,8 @@ class MaxMatchWordSegmenter:
 
     def main(self):
         syl = syllables.Syllables()
-        f = open ('output.txt', 'a')
-        sentences = syl.split_sentences('data.txt')
+        f = open ('/home/vudat1710/Downloads/Project-1--20181-Word-Segmentation/MaximumMatching/output2.txt', 'a')
+        sentences = syl.split_sentences('/home/vudat1710/Downloads/Project-1--20181-Word-Segmentation/CrawlData/dantri/data2.txt')
         for sentence in sentences:
             result = syl.handle(''.join(sentence))
             words = self.max_match(result)  
@@ -174,13 +182,13 @@ class MaxMatchWordSegmenter:
                 f.write('\n')
             f.write('\n')  
         f.close()
-        f = open('histogram.txt','a')
-        for word, count in sorted(self.histogram.items(), key=lambda x:x[::-1], reverse=True):
-            f.write(word)
-            f.write("   ")
-            f.write(str(count))
-            f.write("\n")
-        f.close()
+        # f = open('histogram.txt','a')
+        # for word, count in sorted(self.histogram.items(), key=lambda x:x[::-1], reverse=True):
+        #     f.write(word)
+        #     f.write("   ")
+        #     f.write(str(count))
+        #     f.write("\n")
+        # f.close()
 
 if __name__ =='__main__':
     a = MaxMatchWordSegmenter()

@@ -11,7 +11,7 @@ class Syllables():
 
     def handle(self, paragraph):
         # paragraph = unicode(paragraph, 'utf-8')
-        paragraph = unicodedata.normalize('NFC', paragraph)
+        # paragraph = unicodedata.normalize('NFC', paragraph)
 
         regexes = []
         regexes.extend([constants.FULL_DATE,constants.DATE_MONTH,constants.MONTH_YEAR, constants.TIME])
